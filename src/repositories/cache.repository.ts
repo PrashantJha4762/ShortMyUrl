@@ -15,7 +15,7 @@ export async function SetUrlMapping(short_url:string,Original_url:string):Promis
     if(!redisClient.isOpen){
         await redisClient.connect()
     }
-    await redisClient.set(key, Original_url,{EX: 60*60*24*7}) // Set expiration time to 7 days})
+    await redisClient.set(key, Original_url,{EX: 60*60*24*7}) 
 }
 export async function DeleteUrlMapping(short_url:string):Promise<void>{
     const key=`url:${short_url}`
