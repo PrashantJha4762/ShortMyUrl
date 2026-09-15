@@ -20,7 +20,8 @@ urls.init({
   },
   short_url:{
     type: DataTypes.STRING(255),
-    allowNull:false
+    allowNull:false,
+    unique:true
   },
   createdAt:{
     type: DataTypes.DATE,
@@ -39,3 +40,5 @@ urls.init({
   modelName:'urls',
   tableName:'urls'
 })
+
+export default urls
