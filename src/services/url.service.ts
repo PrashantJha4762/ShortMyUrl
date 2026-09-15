@@ -35,15 +35,17 @@ export async function CreateUrlService(originalUrl: string): Promise<{ //ye pta 
 
 export async function GetOriginalUrlService(shortUrl: string) {
     const originalUrl=await GetUrlMapping(shortUrl)
+    const url=await GetUrlByShortUrl(shortUrl);
+        if(!url){
+            return null
+        }
+
     if(originalUrl){
+            await IncrementUrlClicks(url.id,url.clicks)
         return {
             original_url:originalUrl,
             short_url:shortUrl
         }
-    }
-    const url=await GetUrlByShortUrl(shortUrl);
-    if(!url){
-        return null
     }
     await IncrementUrlClicks(url.id,url.clicks) //incrementing the clicks in the databases so that we can keep track of how many times the short url has been clicked
     await SetUrlMapping(shortUrl,url.original_url) //setting the mapping in redis cache so that next time we can get the original url from cache instead of hitting the database

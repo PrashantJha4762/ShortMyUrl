@@ -7,6 +7,9 @@ export async function CreateUrl(data:CreateUrlDto){
 }
 export async function GetUrlByShortUrl(short_url:string){
     const url = await urls.findOne({where:{short_url}})
+    if(!url){
+        return null
+    }
     return url
 }
 export async function GetUrlById(id:number){
