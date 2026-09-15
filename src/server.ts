@@ -9,6 +9,7 @@ import { urlRouter } from './router/trpc/url';
 import { createExpressMiddleware } from '@trpc/server/adapters/express';
 import { sequelize } from './db/models/sequelize';
 import { trpcRouter } from './router/trpc';
+import redirectRouter from './router/redirect.router';
 const app=express();
 
 app.use(express.json());
@@ -20,6 +21,8 @@ app.use('/trpc',createExpressMiddleware({
 }))
 
 app.use('/api/v1',v1Router);
+
+app.use('/', redirectRouter);
 
 app.use(GenericErrorHandler)
 
