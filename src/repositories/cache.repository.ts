@@ -24,3 +24,11 @@ export async function DeleteUrlMapping(short_url:string):Promise<void>{
     }
     await redisClient.del(key)
 }
+export async function GetUrlMapping(short_url:string):Promise<string|null>{
+    const key=`url:${short_url}`
+    if(!redisClient.isOpen){
+        await redisClient.connect()
+    }
+    const original_url=await redisClient.get(key)
+    return original_url
+}

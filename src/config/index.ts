@@ -6,6 +6,7 @@ type ServerConfig = {
   PORT: number;
   RedisUrl: string;
   REDIS_COUNTER_KEY: string;
+  BASE_URL: string
 };
 type Dbconfig = {
   username: string;
@@ -18,7 +19,8 @@ type Dbconfig = {
 export const serverconfig: ServerConfig = {
   PORT: Number(process.env.PORT) || 3001,
   RedisUrl: process.env.REDIS_URL || "redis://localhost:6379",
-  REDIS_COUNTER_KEY: process.env.REDIS_COUNTER_KEY || "url_counter_counter"
+  REDIS_COUNTER_KEY: process.env.REDIS_COUNTER_KEY || "url_counter_counter",
+  BASE_URL: process.env.BASE_URL || "http://localhost:3001"
 };
 export const dbconfig: Dbconfig = {
   username: process.env.DB_USERNAME || "root",
