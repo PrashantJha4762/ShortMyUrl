@@ -19,7 +19,7 @@ export const serverconfig: ServerConfig = {
 export const dbconfig: Dbconfig = {
   username: process.env.DB_USERNAME || "root",
   password: process.env.DB_PASSWORD || "root",
-  database: process.env.DB_NAME || "shortmyurl",
+  database: process.env.DB_NAME || "Shortner_dev",
   host: process.env.DB_HOST || "localhost",
   dialect: process.env.DB_DIALECT || "mysql"
 };

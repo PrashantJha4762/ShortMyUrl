@@ -1,27 +1,41 @@
-import { Model, type CreationOptional, type InferAttributes, type InferCreationAttributes } from "sequelize";
-
+import { DataTypes, Model, type CreationOptional, type InferAttributes, type InferCreationAttributes } from "sequelize";
+import { sequelize } from "./sequelize.js";
 class urls extends Model<InferAttributes<urls>,InferCreationAttributes<urls>>{
   declare id:CreationOptional<number>
   declare original_url:string
+  declare clicks:CreationOptional<number>
   declare short_url:string
   declare createdAt:CreationOptional<Date>
   declare updatedAt:CreationOptional<Date>
 }
 urls.init({
   id:{
-    type: "INT",
+    type: DataTypes.INTEGER,
     autoIncrement:true,
     primaryKey:true
   },
   original_url:{
-    type:"VARCHAR(255)",
+    type: DataTypes.STRING(255),
     allowNull:false
   },
   short_url:{
-    type:"VARCHAR(255)",
+    type: DataTypes.STRING(255),
     allowNull:false
+  },
+  createdAt:{
+    type: DataTypes.DATE,
+    allowNull:false
+  },
+  updatedAt:{
+    type: DataTypes.DATE,
+    allowNull:false
+  },
+  clicks:{
+    type: DataTypes.INTEGER,
+    defaultValue:0
   }
 },{
-  sequelize:require('../config/sequelize.config.cjs'),
-  modelName:'urls'
+  sequelize,
+  modelName:'urls',
+  tableName:'urls'
 })
