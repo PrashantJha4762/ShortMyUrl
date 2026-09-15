@@ -10,3 +10,10 @@ export async function GetNextId(): Promise<number> {
     const counter=await redisClient.incr(key)
     return counter
 }
+export async function SetUrlMapping(short_url:string,Original_url:string):Promise<void>{
+    const key=`url:${short_url}`
+    if(!redisClient.isOpen){
+        await redisClient.connect()
+    }
+    await redisClient.set(key, Original_url)
+}
