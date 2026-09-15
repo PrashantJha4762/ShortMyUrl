@@ -2,7 +2,9 @@ import { createClient } from "redis";
 import { serverconfig } from ".";
 
 export const redisClient=createClient({
-    url: serverconfig.RedisUrl
+    url: serverconfig.RedisUrl,
+    RESP: 2 // this is because we were not able to connect to redis
+    //  because of older version issue
 })
 redisClient.on("error",(err)=>console.log("Redis Client Error",err))
 

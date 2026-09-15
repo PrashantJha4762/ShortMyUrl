@@ -38,7 +38,8 @@ urls.init({
 },{
   sequelize,
   modelName:'urls',
-  tableName:'urls'
+  tableName:'urls',
+  underscored:true
 })
 
 export default urls
