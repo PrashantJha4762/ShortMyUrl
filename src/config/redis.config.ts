@@ -1,7 +1,7 @@
 import { createClient } from "redis";
 import { serverconfig } from ".";
 
-const redisClient=createClient({
+export const redisClient=createClient({
     url: serverconfig.RedisUrl
 })
 redisClient.on("error",(err)=>console.log("Redis Client Error",err))
@@ -19,7 +19,7 @@ export async function connectRedis(){
 }
 export async function disconnectRedis(){
     try{
-        await redisClient.disconnect()
+        await redisClient.quit()
         console.log("Redis Client Disconnected")
     } catch (error) {
         console.error("Error disconnecting from Redis:", error)
